@@ -1,3 +1,7 @@
+This fork of the Google Closure compiler extends the annotations with an `@inline` annotation that overrides the cost estimation function that decides if a function gets inlined or not. This can be useful to avoid function call overhead on mobile devices at a slight increase in file size. Note that the annotation does not force inlining, it only overrides the file size cost estimation calculation for functions that are already eligible to be inlined. Use at your own risk.
+
+A compiled version is available in the downloads section: https://github.com/jfparadis/closure-compiler-inline/downloads
+
 # [Google Closure Compiler](https://developers.google.com/closure/compiler/)
 
 [![Build Status](https://travis-ci.org/google/closure-compiler.svg?branch=master)](https://travis-ci.org/google/closure-compiler)

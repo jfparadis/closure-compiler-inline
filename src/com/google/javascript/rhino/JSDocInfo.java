@@ -365,6 +365,8 @@ public class JSDocInfo implements Serializable {
   private static final int MASK_STALBEIDGEN   = 0x01000000; // @stableIdGenerator
   private static final int MASK_MAPPEDIDGEN   = 0x02000000; // @idGenerator {mapped}
 
+  private static final int MASK_INLINE        = 0x10000000; // @inline
+
   // 3 bit type field stored in the top 3 bits of the most significant
   // nibble.
   private static final int MASK_TYPEFIELD    = 0xE0000000; // 1110...
@@ -501,6 +503,10 @@ public class JSDocInfo implements Serializable {
 
   void setNoCompile(boolean value) {
     setFlag(value, MASK_NOCOMPILE);
+  }
+
+  void setInline(boolean value) {
+    setFlag(value, MASK_INLINE);
   }
 
   private void setFlag(boolean value, int mask) {
@@ -708,6 +714,14 @@ public class JSDocInfo implements Serializable {
    */
   public boolean isNoCompile() {
     return getFlag(MASK_NOCOMPILE);
+  }
+
+  /**
+   * Returns whether the {@code @inline} annotation is present on this
+   * {@link JSDocInfo}.
+   */
+  public boolean isInline() {
+    return getFlag(MASK_INLINE);
   }
 
   /**

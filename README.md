@@ -1,3 +1,7 @@
+This fork of the Google Closure compiler extends the annotations with an `@inline` annotation that overrides the cost estimation function that decides if a function gets inlined or not. This can be useful to avoid function call overhead on mobile devices at a slight increase in file size. Note that the annotation does not force inlining, it only overrides the file size cost estimation calculation for functions that are already eligible to be inlined. Use at your own risk.
+
+A compiled version is available in the downloads section: https://github.com/jfparadis/closure-compiler-inline/downloads
+
 # [Google Closure Compiler](https://developers.google.com/closure/compiler/)
 
 The [Closure Compiler](https://developers.google.com/closure/compiler/) is a tool for making JavaScript download and run faster. It is a true compiler for JavaScript. Instead of compiling from a source language to machine code, it compiles from JavaScript to better JavaScript. It parses your JavaScript, analyzes it, removes dead code and rewrites and minimizes what's left. It also checks syntax, variable references, and types, and warns about common JavaScript pitfalls.

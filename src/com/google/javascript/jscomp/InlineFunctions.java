@@ -22,6 +22,7 @@ import com.google.javascript.jscomp.FunctionInjector.CanInlineResult;
 import com.google.javascript.jscomp.FunctionInjector.InliningMode;
 import com.google.javascript.jscomp.NodeTraversal.AbstractPostOrderCallback;
 import com.google.javascript.jscomp.NodeTraversal.Callback;
+import com.google.javascript.rhino.JSDocInfo;
 import com.google.javascript.rhino.Node;
 import com.google.javascript.rhino.Token;
 
@@ -743,6 +744,12 @@ class InlineFunctions implements SpecializationAwareCompilerPass {
    * @return Whether inlining the references lowers the overall cost.
    */
   private boolean mimimizeCost(FunctionState fs) {
+    JSDocInfo info = NodeUtil.getFunctionJSDocInfo(fs.getFn().getFunctionNode());
+
+    if (info != null && info.isInline()) {
+        return true;
+    }
+
     if (!inliningLowersCost(fs)) {
       // Try again without Block inlining references
       if (fs.hasBlockInliningReferences()) {
